@@ -3,44 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snake Game</title>
+    <title>Snake Game Pro</title>
     <link rel="stylesheet" href="style.css">
+    <script src="auth.js" defer></script>
+    <script src="game.js" defer></script>
 </head>
 <body>
-    
-    <main>
-       
-<section>
-     <div class="infos">
 
-            <div class="info">
-                <h3>High Score:
-                    <span id="high-score">0</span>
-                </h3>
-            </div>
+<div class="container">
 
-             <div class="info">
-                <h3> Score:
-                    <span id="score">0</span>
-                </h3>
-            </div>
+    <aside class="profile" aria-label="Player Dashboard">
 
-             <div class="info">
-                <h3>Time:
-                    <span id="Time">00-00</span>
-                </h3>
-            </div>
+        <h2>👤 Player Profile</h2>
+
+        <div class="user-box">
+            <p id="user">Loading player...</p>
         </div>
 
-<div class="board">
+        <div class="stats" role="region" aria-live="polite">
+            <p>⏱ Time: <span id="time">0</span>s</p>
+            <p>🎯 Score: <span id="score">0</span></p>
+            <p>🏆 High Score: <span id="highscore">0</span></p>
+        </div>
 
-   
+        <div class="controls">
+            <button type="button" class="btn-pause" id="btnPause">⏸ Pause / Resume</button>
+<button type="button" class="btn-logout" id="btnLogout">🚪 Sign Out</button>        </div>
+
+    </aside>
+
+    <main class="game-area">
+        <canvas id="board" width="400" height="400"></canvas>
+    </main>
 
 </div>
 
-</section>
-    </main>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const user = localStorage.getItem("loggedInUser");
 
-    <script src="index.js"></script>
+        if (!user) {
+            window.location.href = "signin.html";
+        } else {
+            document.getElementById("user").textContent = `Welcome, ${user}`;
+        }
+
+       
+        const pauseBtn = document.getElementById("btnPause");
+        const logoutBtn = document.getElementById("btnLogout");
+
+        if (pauseBtn && typeof pauseGame === "function") pauseBtn.addEventListener("click", pauseGame);
+        if (logoutBtn && typeof logout === "function") logoutBtn.addEventListener("click", logout);
+    });
+</script>
+
 </body>
 </html>

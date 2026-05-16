@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Out</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="auth.js" defer></script>
+</head>
+<body>
+
+<div class="auth-container">
+
+    <main class="auth-card large">
+
+        <h2>🚪 Signing You Out...</h2>
+        <p>Please wait, redirecting to login page</p>
+
+    </main>
+
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        if (typeof logout === "function") {
+            logout();
+        } else {
+            localStorage.removeItem("loggedInUser");
+            window.location.href = "signin.html";
+        }
+    });
+</script>
+
+</body>
+</html>
