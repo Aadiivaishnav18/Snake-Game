@@ -39,8 +39,17 @@
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         const signinBtn = document.getElementById("btnSignin");
-        if (signinBtn && typeof signin === "function") {
-            signinBtn.addEventListener("click", signin);
+        
+        if (signinBtn) {
+            signinBtn.addEventListener("click", () => {
+                const username = document.getElementById("username").value;
+                
+                alert(`Welcome back, ${username || 'User'}! Login Successful.`);
+                
+                if (typeof signin === "function") {
+                    signin(); 
+                }
+            });
         }
     });
 </script>
