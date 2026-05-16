@@ -42,6 +42,24 @@ document.addEventListener("keydown", e => {
     if (e.key === "ArrowRight" && direction !== "LEFT") nextDirection = "RIGHT";
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+    const btnUp = document.getElementById("ctrlUp");
+    const btnDown = document.getElementById("ctrlDown");
+    const btnLeft = document.getElementById("ctrlLeft");
+    const btnRight = document.getElementById("ctrlRight");
+
+    const handleDirectionChange = (targetDir, opposingDir) => {
+        if (!paused && direction !== opposingDir) {
+            nextDirection = targetDir;
+        }
+    };
+
+    if (btnUp) btnUp.addEventListener("click", () => handleDirectionChange("UP", "DOWN"));
+    if (btnDown) btnDown.addEventListener("click", () => handleDirectionChange("DOWN", "UP"));
+    if (btnLeft) btnLeft.addEventListener("click", () => handleDirectionChange("LEFT", "RIGHT"));
+    if (btnRight) btnRight.addEventListener("click", () => handleDirectionChange("RIGHT", "LEFT"));
+});
+
 function draw() {
     ctx.fillStyle = "#111";
     ctx.fillRect(0, 0, canvas.width, canvas.height);

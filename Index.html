@@ -13,7 +13,6 @@
 <div class="container">
 
     <aside class="profile" aria-label="Player Dashboard">
-
         <h2>👤 Player Profile</h2>
 
         <div class="user-box">
@@ -28,12 +27,24 @@
 
         <div class="controls">
             <button type="button" class="btn-pause" id="btnPause">⏸ Pause / Resume</button>
-<button type="button" class="btn-logout" id="btnLogout">🚪 Sign Out</button>        </div>
-
+            <button type="button" class="btn-logout" id="btnLogout">🚪 Sign Out</button>
+        </div>
     </aside>
 
     <main class="game-area">
-        <canvas id="board" width="400" height="400"></canvas>
+        <div class="game-wrapper">
+            <canvas id="board" width="400" height="400"></canvas>
+            
+            <div class="mobile-controls" id="mobileControls">
+                <button type="button" class="dpad-btn up" id="ctrlUp">▲</button>
+                <div class="dpad-row">
+                    <button type="button" class="dpad-btn left" id="ctrlLeft">◀</button>
+                    <div class="dpad-spacer"></div>
+                    <button type="button" class="dpad-btn right" id="ctrlRight">▶</button>
+                </div>
+                <button type="button" class="dpad-btn down" id="ctrlDown">▼</button>
+            </div>
+        </div>
     </main>
 
 </div>
@@ -48,7 +59,6 @@
             document.getElementById("user").textContent = `Welcome, ${user}`;
         }
 
-       
         const pauseBtn = document.getElementById("btnPause");
         const logoutBtn = document.getElementById("btnLogout");
 
