@@ -4,68 +4,97 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Snake Game Pro</title>
+
     <link rel="stylesheet" href="style.css">
+
     <script src="auth.js" defer></script>
     <script src="game.js" defer></script>
 </head>
+
 <body>
 
-<div class="container">
+    <div class="container">
 
-    <aside class="profile" aria-label="Player Dashboard">
-        <h2>👤 Player Profile</h2>
+        <aside class="profile">
 
-        <div class="user-box">
-            <p id="user">Loading player...</p>
-        </div>
+            <h2>Player Profile</h2>
 
-        <div class="stats" role="region" aria-live="polite">
-            <p>⏱ Time: <span id="time">0</span>s</p>
-            <p>🎯 Score: <span id="score">0</span></p>
-            <p>🏆 High Score: <span id="highscore">0</span></p>
-        </div>
-
-        <div class="controls">
-            <button type="button" class="btn-pause" id="btnPause">⏸ Pause / Resume</button>
-            <button type="button" class="btn-logout" id="btnLogout">🚪 Sign Out</button>
-        </div>
-    </aside>
-
-    <main class="game-area">
-        <div class="game-wrapper">
-            <canvas id="board" width="400" height="400"></canvas>
-            
-            <div class="mobile-controls" id="mobileControls">
-                <button type="button" class="dpad-btn up" id="ctrlUp">▲</button>
-                <div class="dpad-row">
-                    <button type="button" class="dpad-btn left" id="ctrlLeft">◀</button>
-                    <div class="dpad-spacer"></div>
-                    <button type="button" class="dpad-btn right" id="ctrlRight">▶</button>
-                </div>
-                <button type="button" class="dpad-btn down" id="ctrlDown">▼</button>
+            <div class="user-box">
+                <p id="user">Loading...</p>
             </div>
-        </div>
-    </main>
 
-</div>
+            <div class="stats">
+                <p>Time : <span id="time">0</span>s</p>
+                <p>Score : <span id="score">0</span></p>
+                <p>High Score : <span id="highscore">0</span></p>
+            </div>
 
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const user = localStorage.getItem("loggedInUser");
+            <div class="controls">
 
-        if (!user) {
-            window.location.href = "signin.html";
-        } else {
-            document.getElementById("user").textContent = `Welcome, ${user}`;
-        }
+                <button class="btn-pause" id="btnPause">
+                    Pause / Resume
+                </button>
 
-        const pauseBtn = document.getElementById("btnPause");
-        const logoutBtn = document.getElementById("btnLogout");
+                <button class="btn-logout" id="btnLogout">
+                    Sign Out
+                </button>
 
-        if (pauseBtn && typeof pauseGame === "function") pauseBtn.addEventListener("click", pauseGame);
-        if (logoutBtn && typeof logout === "function") logoutBtn.addEventListener("click", logout);
-    });
-</script>
+            </div>
+
+        </aside>
+
+        <main class="game-area">
+
+            <div class="game-wrapper">
+
+                <canvas id="board" width="400" height="400"></canvas>
+
+                <div class="mobile-controls">
+
+                    <button class="dpad-btn" id="ctrlUp">▲</button>
+
+                    <div class="dpad-row">
+
+                        <button class="dpad-btn" id="ctrlLeft">◀</button>
+
+                        <div class="dpad-spacer"></div>
+
+                        <button class="dpad-btn" id="ctrlRight">▶</button>
+
+                    </div>
+
+                    <button class="dpad-btn" id="ctrlDown">▼</button>
+
+                </div>
+
+            </div>
+
+        </main>
+
+    </div>
+
+    <script>
+
+        window.addEventListener("DOMContentLoaded", () => {
+
+            const user = localStorage.getItem("loggedInUser");
+
+            if (!user) {
+                window.location.href = "signin.html";
+            }
+
+            document.getElementById("user").textContent =
+                "Welcome, " + user;
+
+            const pauseBtn = document.getElementById("btnPause");
+            const logoutBtn = document.getElementById("btnLogout");
+
+            pauseBtn.addEventListener("click", pauseGame);
+            logoutBtn.addEventListener("click", logout);
+
+        });
+
+    </script>
 
 </body>
 </html>
