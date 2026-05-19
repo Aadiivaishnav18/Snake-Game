@@ -79,6 +79,42 @@ document.addEventListener("keydown", e => {
     }
 });
 
+const btnUp = document.getElementById("ctrlUp");
+const btnDown = document.getElementById("ctrlDown");
+const btnLeft = document.getElementById("ctrlLeft");
+const btnRight = document.getElementById("ctrlRight");
+
+function changeDirection(newDir, oppositeDir) {
+
+    if (paused) return;
+
+    if (direction !== oppositeDir) {
+        nextDirection = newDir;
+    }
+}
+
+function addControl(button, dir, opposite) {
+
+    if (!button) return;
+
+    button.addEventListener("click", () => {
+        changeDirection(dir, opposite);
+    });
+
+    button.addEventListener("touchstart", e => {
+
+        e.preventDefault();
+
+        changeDirection(dir, opposite);
+
+    }, { passive: false });
+}
+
+addControl(btnUp, "UP", "DOWN");
+addControl(btnDown, "DOWN", "UP");
+addControl(btnLeft, "LEFT", "RIGHT");
+addControl(btnRight, "RIGHT", "LEFT");
+
 function drawBoard() {
 
     ctx.fillStyle = "#050816";
@@ -90,10 +126,13 @@ function drawSnake() {
     snake.forEach((segment, index) => {
 
         if (index === 0) {
+
             ctx.fillStyle = "#39ff14";
             ctx.shadowColor = "#39ff14";
             ctx.shadowBlur = 15;
+
         } else {
+
             ctx.fillStyle = "#00cc66";
             ctx.shadowBlur = 0;
         }
